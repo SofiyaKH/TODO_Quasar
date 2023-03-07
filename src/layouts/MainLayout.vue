@@ -33,7 +33,7 @@
         "
       >
         <q-list padding>
-          <q-item clickable v-ripple>
+          <q-item to="/" exact clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="list" />
             </q-item-section>
@@ -41,7 +41,7 @@
             <q-item-section> ToDo </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item to="/help" exact clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="help" />
             </q-item-section>
@@ -49,7 +49,7 @@
             <q-item-section> Help </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item to="/about" exact clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="supervisor_account" />
             </q-item-section>
@@ -71,7 +71,11 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </q-page-container>
   </q-layout>
 </template>
