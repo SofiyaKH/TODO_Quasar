@@ -1,5 +1,21 @@
 <template>
-  <q-page class="bg-grey-1 column">
+  <q-page class="bg-grey-1 column ">
+    <div class="row q-pa-sm bg-white ">
+      <q-input
+        filled
+        class="col"
+        square
+        bg-color="white"
+        v-model="text"
+        placeholder="add task"
+        dense
+      >
+        <template v-slot:append>
+          <q-btn round dense flat icon="add" />
+        </template>
+      </q-input>
+    </div>
+
     <q-list separator bordered>
       <q-item
         @click="task.done = !task.done"
@@ -56,7 +72,17 @@ export default {
   },
   methods: {
     deleteTask(index) {
-      this.tasks.splice(index, 1);
+      this.$q
+        .dialog({
+          title: "Confirm",
+          message: "Are you sure?",
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          this.tasks.splice(index, 1);
+          this.$q.notify("Task deleted!");
+        });
     },
   },
 };
