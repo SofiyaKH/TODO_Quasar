@@ -56,20 +56,7 @@ export default {
   data() {
     return {
       newTask: "",
-      tasks: [
-        {
-          title: "hello1",
-          done: true,
-        },
-        {
-          title: "hello2",
-          done: false,
-        },
-        {
-          title: "hello3",
-          done: false,
-        },
-      ],
+      tasks: [],
     };
   },
   methods: {
